@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Items | FindBack</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef4ff, #f8faff);
+            color: #1e293b;
+        }
+
+        .navbar {
+            padding: 18px 7%;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .logo span {
+            color: #0f172a;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 32px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #64748b;
+        }
+
+        .search-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr auto;
+            gap: 12px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+        }
+
+        .search-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .clear-btn {
+            display: inline-block;
+            margin-top: 15px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .clear-btn:hover {
+            color: #2563eb;
+        }
+
+        .results-title {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(15, 23, 42, 0.08);
+            transition: 0.3s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.13);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+
+        .no-image {
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #eff6ff;
+            font-size: 45px;
+        }
+
+        .item-content {
+            padding: 20px;
+        }
+
+        .item-content h3 {
+            margin-bottom: 10px;
+            color: #0f172a;
+            font-size: 20px;
+        }
+
+        .item-content p {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .lost {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .found {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        /* View Details Button */
+
+        .details-btn {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            padding: 11px 15px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .details-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            color: #64748b;
+        }
+
+        .empty h3 {
+            margin-bottom: 10px;
+            color: #334155;
+        }
+
+        @media (max-width: 900px) {
+
+            .search-form {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 25px;
+            }
+
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .back-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Find<span>Back</span>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- Main Container -->
+
+    <main class="container">
+
+        <div class="heading">
+
+            <h1>Search Lost & Found Items 🔎</h1>
+
+            <p>
+                Find items reported by users in the community.
+            </p>
+
+        </div>
+
+
+        <!-- Search Section -->
+
+        <div class="search-card">
+
+            <form
+                class="search-form"
+                method="GET"
+                action="{{ url_for('search_items') }}"
+                id="searchForm"
+            >
+
+                <input
+                    type="text"
+                    name="item_name"
+                    placeholder="Search item name..."
+                    value="{{ request.args.get('item_name', '') }}"
+                >
+
+                <input
+                    type="text"
+                    name="location"
+                    placeholder="Search location..."
+                    value="{{ request.args.get('location', '') }}"
+                >
+
+                <select name="report_type">
+
+                    <option value="">
+                        All Items
+                    </option>
+
+                    <option
+                        value="Lost"
+                        {% if request.args.get('report_type') == 'Lost' %}
+                            selected
+                        {% endif %}
+                    >
+                        Lost
+                    </option>
+
+                    <option
+                        value="Found"
+                        {% if request.args.get('report_type') == 'Found' %}
+                            selected
+                        {% endif %}
+                    >
+                        Found
+                    </option>
+
+                </select>
+
+                <button
+                    type="submit"
+                    class="search-btn"
+                >
+                    Search
+                </button>
+
+            </form>
+
+
+            <a
+                href="{{ url_for('search_items') }}"
+                class="clear-btn"
+            >
+                Clear Search
+            </a>
+
+        </div>
+
+
+        <!-- Results Heading -->
+
+        <h2 class="results-title">
+
+            Search Results ({{ reports|length }})
+
+        </h2>
+
+
+        <!-- Search Results -->
+
+        {% if reports %}
+
+            <div class="results-grid">
+
+                {% for report in reports %}
+
+                    <div class="item-card">
+
+                        <!-- Item Image -->
+
+                        {% if report.photo %}
+
+                            <img
+                                class="item-image"
+                                src="{{ url_for('static', filename='uploads/' + report.photo) }}"
+                                alt="{{ report.item_name }}"
+                            >
+
+                        {% else %}
+
+                            <div class="no-image">
+                                📦
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- Item Content -->
+
+                        <div class="item-content">
+
+                            <span
+                                class="badge
+                                {% if report.report_type == 'Lost' %}
+                                    lost
+                                {% else %}
+                                    found
+                                {% endif %}"
+                            >
+
+                                {{ report.report_type }}
+
+                            </span>
+
+
+                            <h3>
+                                {{ report.item_name }}
+                            </h3>
+
+
+                            <p>
+                                📍 {{ report.location or "Not specified" }}
+                            </p>
+
+
+                            <p>
+                                📅 {{ report.report_date or "Not specified" }}
+                            </p>
+
+
+                            <p>
+                                {{ report.description or "No description available." }}
+                            </p>
+
+
+                            <p>
+                                Status:
+
+                                <span class="status">
+                                    {{ report.status }}
+                                </span>
+                            </p>
+
+
+                            <!-- View Details Button -->
+
+                            <a
+                                href="{{ url_for('item_details', report_id=report.id) }}"
+                                class="details-btn"
+                            >
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <!-- Empty Result -->
+
+            <div class="empty">
+
+                <h3>
+                    No items found 🔍
+                </h3>
+
+                <p>
+                    Try searching with a different item name or location.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const searchForm = document.getElementById("searchForm");
+
+        searchForm.addEventListener("submit", function (event) {
+
+            const itemName = document
+                .querySelector('input[name="item_name"]')
+                .value.trim();
+
+            const location = document
+                .querySelector('input[name="location"]')
+                .value.trim();
+
+            const reportType = document
+                .querySelector('select[name="report_type"]')
+                .value;
+
+            if (!itemName && !location && !reportType) {
+
+                event.preventDefault();
+
+                alert(
+                    "Please enter a search keyword or select a report type."
+                );
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

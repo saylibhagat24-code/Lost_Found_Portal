@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FindBack | Lost & Found Portal</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        /* =========================
+           GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #635bff;
+            --secondary: #8b5cf6;
+            --dark: #111827;
+            --text: #4b5563;
+            --light: #f8faff;
+            --border: #e5e7eb;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(255, 255, 255, 0.92);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            min-height: 80px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 24px;
+            font-weight: 800;
+
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 12px;
+
+            background: #eeecff;
+
+            font-size: 22px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            color: var(--text);
+        }
+
+        .nav-links a {
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-btn {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .register-btn {
+            background: var(--primary);
+            color: white;
+
+            padding: 11px 19px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #5048d8;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            padding: 90px 0 70px;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    #e5e1ff 0%,
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8faff,
+                    #f0f3ff
+                );
+        }
+
+        .hero-container {
+            display: grid;
+
+            grid-template-columns: 1.1fr 0.9fr;
+
+            align-items: center;
+
+            gap: 60px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            background: #eeecff;
+            color: var(--primary);
+
+            padding: 8px 14px;
+
+            border-radius: 50px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+
+            background: #22c55e;
+
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 64px);
+
+            line-height: 1.08;
+
+            letter-spacing: -2px;
+
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-description {
+            margin-top: 25px;
+
+            max-width: 500px;
+
+            color: var(--text);
+
+            font-size: 15px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 14px;
+
+            margin-top: 32px;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 14px 22px;
+
+            border-radius: 10px;
+
+            background: var(--primary);
+            color: white;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            background: #5048d8;
+            transform: translateY(-3px);
+        }
+
+        .outline-btn {
+            display: inline-flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 14px 22px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            border: 1px solid #d9dcf0;
+
+            color: var(--dark);
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .outline-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-top: 28px;
+
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .trust-icons {
+            display: flex;
+        }
+
+        .trust-icons span {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: white;
+
+            border: 2px solid var(--light);
+
+            border-radius: 50%;
+
+            margin-left: -5px;
+
+            font-size: 13px;
+        }
+
+        .trust-icons span:first-child {
+            margin-left: 0;
+        }
+
+
+        /* =========================
+           HERO VISUAL
+        ========================= */
+
+        .visual-wrapper {
+            position: relative;
+            min-height: 400px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-circle {
+            position: absolute;
+
+            width: 360px;
+            height: 360px;
+
+            border-radius: 50%;
+
+            background: #e5e1ff;
+        }
+
+        .main-item-card {
+            position: relative;
+            z-index: 2;
+
+            width: 310px;
+
+            padding: 25px;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            border: 1px solid white;
+
+            border-radius: 22px;
+
+            box-shadow: 0 25px 60px rgba(79, 70, 229, 0.15);
+        }
+
+        .item-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .small-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .active-label {
+            color: #16a34a;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .item-image {
+            height: 180px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: 20px 0;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ede9fe,
+                    #dbeafe
+                );
+
+            font-size: 90px;
+        }
+
+        .main-item-card h3 {
+            font-size: 20px;
+        }
+
+        .item-location {
+            margin-top: 6px;
+
+            color: #6b7280;
+
+            font-size: 12px;
+        }
+
+        .item-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 20px;
+            padding-top: 15px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .item-category {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .view-btn {
+            border: none;
+
+            background: #eeecff;
+            color: var(--primary);
+
+            padding: 8px 12px;
+
+            border-radius: 7px;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .floating-card {
+            position: absolute;
+            z-index: 3;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            background: white;
+
+            padding: 12px 16px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .floating-card .float-icon {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 9px;
+
+            background: #f0fdf4;
+        }
+
+        .floating-card.top {
+            top: 35px;
+            right: 0;
+        }
+
+        .floating-card.bottom {
+            bottom: 40px;
+            left: 0;
+        }
+
+
+        /* =========================
+           QUICK SEARCH
+        ========================= */
+
+        .search-section {
+            position: relative;
+            z-index: 5;
+
+            margin-top: -10px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            padding: 18px 22px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+        }
+
+        .search-icon {
+            font-size: 22px;
+        }
+
+        .search-input {
+            flex: 1;
+
+            min-width: 0;
+
+            border: none;
+            outline: none;
+
+            font-size: 13px;
+            color: var(--dark);
+        }
+
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-button {
+            border: none;
+
+            background: var(--primary);
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            padding: 45px 0;
+
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+
+            padding: 15px;
+
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h2 {
+            color: var(--primary);
+
+            font-size: 32px;
+
+            font-weight: 800;
+        }
+
+        .stat p {
+            margin-top: 4px;
+
+            color: #6b7280;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           SECTION HEADER
+        ========================= */
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+
+            max-width: 600px;
+
+            margin: 0 auto 50px;
+        }
+
+        .section-tag {
+            color: var(--primary);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+        .section-header h2 {
+            margin-top: 12px;
+
+            font-size: 38px;
+
+            line-height: 1.2;
+
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            margin-top: 16px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FEATURE CARDS
+        ========================= */
+
+        .features-section {
+            background: var(--light);
+        }
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .feature-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            border: 1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow: 0 15px 35px rgba(99, 91, 255, 0.08);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 14px;
+
+            background: #eeecff;
+
+            font-size: 25px;
+        }
+
+        .feature-card h3 {
+            margin-top: 22px;
+
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            margin-top: 12px;
+
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+
+        .feature-link {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: var(--primary);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .how-section {
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .step {
+            text-align: center;
+
+            padding: 35px 25px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            background: #fafaff;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+            color: white;
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .step h3 {
+            margin-top: 20px;
+
+            font-size: 20px;
+        }
+
+        .step p {
+            margin-top: 10px;
+
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta-section {
+            padding: 85px 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #635bff,
+                    #8b5cf6
+                );
+
+            color: white;
+
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            max-width: 480px;
+
+            margin: 18px auto 30px;
+
+            font-size: 14px;
+
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            background: white;
+
+            color: var(--primary);
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 50px 0 25px;
+
+            background: #111827;
+
+            color: white;
+        }
+
+        .footer-container {
+            display: flex;
+
+            justify-content: space-between;
+            gap: 30px;
+
+            padding-bottom: 35px;
+
+            border-bottom: 1px solid #374151;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: white;
+        }
+
+        .footer-brand p {
+            margin-top: 15px;
+
+            font-size: 13px;
+
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+
+            align-items: center;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+
+            color: #d1d5db;
+
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+
+            padding-top: 25px;
+
+            font-size: 11px;
+
+            color: #9ca3af;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .hero-container {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                gap: 40px;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons,
+            .hero-trust {
+                justify-content: center;
+            }
+
+            .visual-wrapper {
+                max-width: 500px;
+
+                width: 100%;
+
+                margin: auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                min-height: 70px;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .visual-circle {
+                width: 290px;
+                height: 290px;
+            }
+
+            .main-item-card {
+                width: 290px;
+            }
+
+            .floating-card.top {
+                right: 0;
+            }
+
+            .floating-card.bottom {
+                left: 0;
+            }
+
+            .feature-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 30px;
+            }
+
+            .cta-section h2 {
+                font-size: 34px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .footer-brand {
+                max-width: 100%;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .nav-actions {
+                gap: 8px;
+            }
+
+            .register-btn {
+                padding: 9px 12px;
+            }
+
+            .login-btn {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .primary-btn,
+            .outline-btn {
+                width: 100%;
+            }
+
+            .hero-trust {
+                flex-direction: column;
+            }
+
+            .search-box {
+                flex-wrap: wrap;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat {
+                border-right: none;
+            }
+
+            .stat h2 {
+                font-size: 26px;
+            }
+
+            .visual-wrapper {
+                min-height: 350px;
+            }
+
+            .floating-card {
+                padding: 9px;
+                font-size: 9px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+
+                <div class="logo-icon">
+                    🔎
+                </div>
+
+                FindBack
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#home">Home</a>
+
+                <a href="#features">Features</a>
+
+                <a href="#how-it-works">How It Works</a>
+
+                <a href="#about">About</a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <a href="/login" class="login-btn">
+                    Login
+                </a>
+
+                <a href="/register" class="register-btn">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+
+    <section class="hero" id="home">
+
+        <div class="container hero-container">
+
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+
+                    <span class="badge-dot"></span>
+
+                    Smart Lost & Found Platform
+
+                </div>
+
+
+                <h1>
+
+                    Lost Something?
+
+                    <br>
+
+                    <span>Find It Back.</span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    A simple and organized digital platform
+                    that connects people with their lost
+                    belongings. Report, search, and reconnect
+                    with confidence.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a href="/report-lost"
+                       class="primary-btn">
+
+                        Report Lost Item →
+
+                    </a>
+
+
+                    <a href="/report-found"
+                       class="outline-btn">
+
+                        Report Found Item
+
+                    </a>
+
+                </div>
+
+
+                <div class="hero-trust">
+
+                    <div class="trust-icons">
+
+                        <span>🎒</span>
+                        <span>📱</span>
+                        <span>🔑</span>
+
+                    </div>
+
+                    <span>
+                        Helping communities reconnect
+                        with lost belongings
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HERO VISUAL -->
+
+            <div class="visual-wrapper">
+
+                <div class="visual-circle"></div>
+
+
+                <div class="floating-card top">
+
+                    <div class="float-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Easy Reporting</strong>
+                        <br>
+                        <small>Simple & Organized</small>
+                    </div>
+
+                </div>
+
+
+                <div class="main-item-card">
+
+                    <div class="item-card-header">
+
+                        <span class="small-label">
+                            RECENTLY REPORTED
+                        </span>
+
+                        <span class="active-label">
+                            ● Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="item-image">
+
+                        🎒
+
+                    </div>
+
+
+                    <h3>
+                        Lost Backpack
+                    </h3>
+
+
+                    <p class="item-location">
+                        📍 College Campus
+                    </p>
+
+
+                    <p class="item-location">
+                        📅 Recently Reported
+                    </p>
+
+
+                    <div class="item-bottom">
+
+                        <span class="item-category">
+                            Personal Belongings
+                        </span>
+
+                        <button class="view-btn"
+                                onclick="showDemoMessage()">
+
+                            View
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card bottom">
+
+                    <div class="float-icon">
+                        🔍
+                    </div>
+
+                    <div>
+                        <strong>Quick Search</strong>
+                        <br>
+                        <small>Find Items Easily</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SEARCH SECTION
+    ========================= -->
+
+    <section class="search-section">
+
+        <div class="container">
+
+            <form class="search-box"
+                  onsubmit="searchItems(event)">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+
+                <input type="text"
+                       class="search-input"
+                       id="searchInput"
+                       placeholder="Search for lost items, e.g. wallet, ID card, backpack..."
+                       required>
+
+
+                <button type="submit"
+                        class="search-button">
+
+                    Search Items
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STATS
+    ========================= -->
+
+    <section class="stats">
+
+        <div class="container stats-grid">
+
+
+            <div class="stat">
+
+                <h2>100+</h2>
+
+                <p>Items Reported</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2>50+</h2>
+
+                <p>Found Items</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2>25+</h2>
+
+                <p>Items Recovered</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2>24/7</h2>
+
+                <p>Platform Access</p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FEATURES SECTION
+    ========================= -->
+
+    <section class="section features-section"
+             id="features">
+
+        <div class="container">
+
+
+            <div class="section-header">
+
+                <span class="section-tag">
+                    OUR FEATURES
+                </span>
+
+
+                <h2>
+                    Everything You Need
+                    <br>
+                    To Find It Back
+                </h2>
+
+
+                <p>
+                    Designed to make lost and found
+                    management simple, organized,
+                    and efficient.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-grid">
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🔍
+                    </div>
+
+
+                    <h3>
+                        Report Lost Items
+                    </h3>
+
+
+                    <p>
+                        Share details about your lost
+                        belongings and make them
+                        easier to identify.
+                    </p>
+
+
+                    <a href="/report-lost"
+                       class="feature-link">
+
+                        Report Lost →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📦
+                    </div>
+
+
+                    <h3>
+                        Report Found Items
+                    </h3>
+
+
+                    <p>
+                        Register found belongings
+                        and help their owners
+                        reconnect with them.
+                    </p>
+
+
+                    <a href="/report-found"
+                       class="feature-link">
+
+                        Report Found →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+
+                    <h3>
+                        Smart Search
+                    </h3>
+
+
+                    <p>
+                        Search and filter reported
+                        items by category, location,
+                        and description.
+                    </p>
+
+
+                    <a href="/search"
+                       class="feature-link">
+
+                        Explore Items →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🔐
+                    </div>
+
+
+                    <h3>
+                        User Accounts
+                    </h3>
+
+
+                    <p>
+                        Organize your reports
+                        through a dedicated
+                        user account.
+                    </p>
+
+
+                    <a href="/register"
+                       class="feature-link">
+
+                        Create Account →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📋
+                    </div>
+
+
+                    <h3>
+                        Track Reports
+                    </h3>
+
+
+                    <p>
+                        Manage submitted reports
+                        and monitor their status
+                        from one place.
+                    </p>
+
+
+                    <a href="/login"
+                       class="feature-link">
+
+                        View Reports →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🤝
+                    </div>
+
+
+                    <h3>
+                        Community Support
+                    </h3>
+
+
+                    <p>
+                        Help connect lost belongings
+                        with their rightful owners
+                        through organized reporting.
+                    </p>
+
+
+                    <a href="#how-it-works"
+                       class="feature-link">
+
+                        Learn More →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================= -->
+
+    <section class="section how-section"
+             id="how-it-works">
+
+        <div class="container">
+
+
+            <div class="section-header">
+
+                <span class="section-tag">
+                    HOW IT WORKS
+                </span>
+
+
+                <h2>
+                    Three Steps.
+                    <br>
+                    One Simple Solution.
+                </h2>
+
+
+                <p>
+                    Report an item, search for matches,
+                    and coordinate its return.
+                </p>
+
+            </div>
+
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+
+                    <h3>
+                        Report
+                    </h3>
+
+
+                    <p>
+                        Submit the details of your
+                        lost or found item.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+
+                    <h3>
+                        Search
+                    </h3>
+
+
+                    <p>
+                        Browse reported items
+                        and identify possible matches.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+
+                    <h3>
+                        Reconnect
+                    </h3>
+
+
+                    <p>
+                        Verify ownership and
+                        coordinate a safe return.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CTA SECTION
+    ========================= -->
+
+    <section class="cta-section">
+
+        <div class="container">
+
+
+            <h2>
+                Every Item Has a Story.
+                <br>
+                Help It Find Its Way Home.
+            </h2>
+
+
+            <p>
+                Join our platform and make lost
+                and found reporting easier
+                for your community.
+            </p>
+
+
+            <a href="/register"
+               class="cta-button">
+
+                Get Started →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer id="about">
+
+        <div class="container">
+
+
+            <div class="footer-container">
+
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+
+                        🔎 FindBack
+
+                    </div>
+
+
+                    <p>
+
+                        A centralized platform
+                        for managing lost and
+                        found belongings.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="footer-links">
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <a href="#features">
+                        Features
+                    </a>
+
+                    <a href="#how-it-works">
+                        How It Works
+                    </a>
+
+                    <a href="/login">
+                        Login
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <p class="copyright">
+
+                © 2026 FindBack.
+                Lost & Found Portal.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function showDemoMessage() {
+
+            alert(
+                "Please log in to view item details."
+            );
+
+        }
+
+
+        function searchItems(event) {
+
+            event.preventDefault();
+
+            const searchValue =
+                document.getElementById("searchInput").value.trim();
+
+            if (searchValue === "") {
+
+                alert("Please enter an item to search.");
+
+                return;
+
+            }
+
+            // Temporary frontend demonstration.
+            // Replace with your Flask search route later.
+
+            window.location.href =
+                "/search?query=" +
+                encodeURIComponent(searchValue);
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

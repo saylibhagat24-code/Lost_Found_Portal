@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Found Item | FindBack</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef4ff, #f8faff);
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            padding: 18px 7%;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #16a34a;
+        }
+
+        .logo span {
+            color: #0f172a;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #16a34a;
+            font-weight: 600;
+            padding: 10px 18px;
+            border: 1px solid #16a34a;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #16a34a;
+            color: white;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 45px auto;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.10);
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 30px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.10);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .input-help {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 6px;
+        }
+
+        /* PHOTO UPLOAD */
+
+        .photo-upload {
+            border: 2px dashed #86efac;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            background: #f0fdf4;
+            transition: 0.3s;
+        }
+
+        .photo-upload:hover {
+            border-color: #16a34a;
+            background: #dcfce7;
+        }
+
+        .photo-upload-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .photo-upload p {
+            color: #64748b;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .photo-upload input[type="file"] {
+            border: none;
+            padding: 10px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        #photoPreview {
+            display: none;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            margin: 20px auto 0;
+            border-radius: 12px;
+            border: 2px solid #bbf7d0;
+        }
+
+        /* BUTTON */
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.25);
+        }
+
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        /* ERROR MESSAGE */
+
+        .message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .heading h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Find<span>Back</span>
+        </div>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="container">
+
+        <div class="form-card">
+
+            <div class="heading">
+
+                <h1>Report Found Item 🤝</h1>
+
+                <p>
+                    Help someone recover their lost belongings.
+                </p>
+
+            </div>
+
+
+            <div id="errorMessage" class="message error-message"></div>
+
+
+            <form
+                action="{{ url_for('report_found') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                id="foundItemForm"
+            >
+
+                <!-- ITEM NAME -->
+
+                <div class="form-group">
+
+                    <label for="item_name">
+                        Item Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="item_name"
+                        name="item_name"
+                        placeholder="Example: Blue School Bag"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Item Description <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Describe the item, color, brand, and other details."
+                        maxlength="1000"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- FOUND LOCATION -->
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Found Location <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Example: College Library"
+                        maxlength="150"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- FOUND DATE -->
+
+                <div class="form-group">
+
+                    <label for="report_date">
+                        Found Date <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="report_date"
+                        name="report_date"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PHOTO UPLOAD -->
+
+                <div class="form-group">
+
+                    <label for="photo">
+                        Item Photo 📷
+                    </label>
+
+                    <div class="photo-upload">
+
+                        <div class="photo-upload-icon">
+                            📷
+                        </div>
+
+                        <p>
+                            Upload a clear photo of the found item
+                        </p>
+
+                        <input
+                            type="file"
+                            id="photo"
+                            name="photo"
+                            accept="image/png, image/jpeg, image/webp"
+                        >
+
+                        <img
+                            id="photoPreview"
+                            src=""
+                            alt="Photo Preview"
+                        >
+
+                    </div>
+
+                    <p class="input-help">
+                        Supported formats: JPG, PNG, WEBP |
+                        Maximum size: 5 MB
+                    </p>
+
+                </div>
+
+
+                <!-- SUBMIT BUTTON -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="submitBtn"
+                >
+                    Submit Found Report
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const form = document.getElementById("foundItemForm");
+
+        const photoInput = document.getElementById("photo");
+
+        const photoPreview = document.getElementById("photoPreview");
+
+        const errorMessage = document.getElementById("errorMessage");
+
+        const submitBtn = document.getElementById("submitBtn");
+
+
+        // Set today's date as maximum date
+
+        const dateInput = document.getElementById("report_date");
+
+        const today = new Date().toISOString().split("T")[0];
+
+        dateInput.max = today;
+
+
+        // Image preview
+
+        photoInput.addEventListener("change", function () {
+
+            errorMessage.style.display = "none";
+
+            const file = this.files[0];
+
+
+            if (!file) {
+
+                photoPreview.style.display = "none";
+
+                photoPreview.src = "";
+
+                return;
+
+            }
+
+
+            // Allowed image types
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+
+            if (!allowedTypes.includes(file.type)) {
+
+                showError(
+                    "Invalid image format. Please upload JPG, PNG, or WEBP."
+                );
+
+                this.value = "";
+
+                photoPreview.style.display = "none";
+
+                return;
+
+            }
+
+
+            // Maximum file size: 5 MB
+
+            const maxSize = 5 * 1024 * 1024;
+
+
+            if (file.size > maxSize) {
+
+                showError(
+                    "Image size must be less than 5 MB."
+                );
+
+                this.value = "";
+
+                photoPreview.style.display = "none";
+
+                return;
+
+            }
+
+
+            // Read image
+
+            const reader = new FileReader();
+
+
+            reader.onload = function (event) {
+
+                photoPreview.src = event.target.result;
+
+                photoPreview.style.display = "block";
+
+            };
+
+
+            reader.readAsDataURL(file);
+
+        });
+
+
+        // Display error message
+
+        function showError(message) {
+
+            errorMessage.textContent = message;
+
+            errorMessage.style.display = "block";
+
+            errorMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        // Form validation
+
+        form.addEventListener("submit", function (event) {
+
+            const itemName = document
+                .getElementById("item_name")
+                .value.trim();
+
+            const description = document
+                .getElementById("description")
+                .value.trim();
+
+            const location = document
+                .getElementById("location")
+                .value.trim();
+
+            const reportDate = document
+                .getElementById("report_date")
+                .value;
+
+
+            if (
+                !itemName ||
+                !description ||
+                !location ||
+                !reportDate
+            ) {
+
+                event.preventDefault();
+
+                showError(
+                    "Please fill in all required fields."
+                );
+
+                return;
+
+            }
+
+
+            // Prevent future dates
+
+            if (reportDate > today) {
+
+                event.preventDefault();
+
+                showError(
+                    "Found date cannot be in the future."
+                );
+
+                return;
+
+            }
+
+
+            // Disable button
+
+            submitBtn.disabled = true;
+
+            submitBtn.textContent = "Submitting Report...";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register | FindBack</title>
+
+
+    <style>
+
+        /* ===== GLOBAL ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6ff;
+            color: #111827;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ===== LAYOUT ===== */
+
+        .auth-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        /* ===== LEFT PANEL ===== */
+
+        .brand-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            padding: 50px;
+
+            background: linear-gradient(
+                145deg,
+                #635bff,
+                #8b5cf6
+            );
+
+            color: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .brand-content {
+            max-width: 400px;
+            margin: auto 0;
+        }
+
+        .brand-content h1 {
+            font-size: 46px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .brand-content p {
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .brand-feature {
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .brand-footer {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* ===== RIGHT PANEL ===== */
+
+        .form-panel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px;
+            background: white;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .form-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #635bff;
+            font-weight: bold;
+        }
+
+        .form-card h2 {
+            font-size: 30px;
+            margin-top: 15px;
+        }
+
+        .form-description {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 12px;
+            margin-bottom: 28px;
+        }
+
+        /* ===== FORM ===== */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 14px;
+
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+
+            background: #fafbff;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 0;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+            font-size: 13px;
+        }
+
+        .input-box:focus-within {
+            border-color: #635bff;
+            box-shadow: 0 0 0 3px #635bff18;
+        }
+
+        .toggle-password {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* ===== CHECKBOX ===== */
+
+        .terms-row {
+            margin: 18px 0 25px;
+        }
+
+        .terms-row label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            font-size: 11px;
+            font-weight: normal;
+            color: #6b7280;
+        }
+
+        .terms-row input {
+            margin-top: 2px;
+        }
+
+        /* ===== BUTTON ===== */
+
+        .submit-btn {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #635bff;
+            color: white;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #5048d8;
+            transform: translateY(-2px);
+        }
+
+        /* ===== LINKS ===== */
+
+        .switch-text {
+            text-align: center;
+            margin-top: 25px;
+
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .switch-text a {
+            color: #635bff;
+            font-weight: bold;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+
+            margin-top: 25px;
+
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 850px) {
+
+            .auth-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-panel {
+                display: none;
+            }
+
+            .form-panel {
+                min-height: 100vh;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .form-panel {
+                padding: 25px 18px;
+            }
+
+            .form-card h2 {
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="auth-wrapper">
+
+
+        <!-- LEFT PANEL -->
+
+        <div class="brand-panel">
+
+            <div class="logo">
+                🔎 FindBack
+            </div>
+
+
+            <div class="brand-content">
+
+                <h1>
+
+                    Join FindBack.
+                    <br>
+
+                    Help belongings
+                    <br>
+
+                    find their way home.
+
+                </h1>
+
+
+                <p>
+
+                    Create an account to report
+                    lost and found items and
+                    connect with your community.
+
+                </p>
+
+
+                <div class="brand-feature">
+
+                    ✓ Report lost and found items
+
+                </div>
+
+
+                <div class="brand-feature">
+
+                    ✓ Browse reported belongings
+
+                </div>
+
+
+                <div class="brand-feature">
+
+                    ✓ Track your submissions
+
+                </div>
+
+            </div>
+
+
+            <div class="brand-footer">
+
+                © 2026 FindBack
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REGISTRATION FORM -->
+
+        <div class="form-panel">
+
+            <div class="form-card">
+
+
+                <div class="form-tag">
+
+                    GET STARTED
+
+                </div>
+
+
+                <h2>
+
+                    Create your account 🚀
+
+                </h2>
+
+
+                <p class="form-description">
+
+                    Join FindBack and start reconnecting.
+
+                </p>
+
+
+
+                <form action="/register"
+                      method="POST"
+                      onsubmit="return validateRegister()">
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+
+                            Full Name
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span>👤</span>
+
+
+                            <input type="text"
+                                   id="name"
+                                   name="name"
+                                   placeholder="Enter your full name"
+                                   minlength="2"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+
+                            Email Address
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span>✉️</span>
+
+
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   placeholder="Enter your email"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+
+                            Phone Number
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span>📱</span>
+
+
+                            <input type="tel"
+                                   id="phone"
+                                   name="phone"
+                                   placeholder="Enter phone number"
+                                   pattern="[0-9]{10}"
+                                   title="Enter a 10-digit phone number"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+
+                            Password
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span>🔒</span>
+
+
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   placeholder="Create a password"
+                                   minlength="8"
+                                   required>
+
+
+                            <button type="button"
+                                    class="toggle-password"
+                                    onclick="togglePassword('password', this)">
+
+                                👁
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="confirm_password">
+
+                            Confirm Password
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span>🔐</span>
+
+
+                            <input type="password"
+                                   id="confirm_password"
+                                   name="confirm_password"
+                                   placeholder="Confirm your password"
+                                   minlength="8"
+                                   required>
+
+
+                            <button type="button"
+                                    class="toggle-password"
+                                    onclick="togglePassword('confirm_password', this)">
+
+                                👁
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="terms-row">
+
+                        <label>
+
+                            <input type="checkbox"
+                                   id="terms"
+                                   required>
+
+                            I agree to the portal's
+                            terms and privacy policy.
+
+                        </label>
+
+                    </div>
+
+
+
+                    <button type="submit"
+                            class="submit-btn">
+
+                        Create Account →
+
+                    </button>
+
+                </form>
+
+
+
+                <p class="switch-text">
+
+                    Already have an account?
+
+                    <a href="/login">
+
+                        Sign In
+
+                    </a>
+
+                </p>
+
+
+
+                <a href="/"
+                   class="back-home">
+
+                    ← Back to Home
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        function togglePassword(inputId, button) {
+
+            const input =
+                document.getElementById(inputId);
+
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                input.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+
+
+        function validateRegister() {
+
+            const password =
+                document.getElementById("password").value;
+
+
+            const confirmPassword =
+                document.getElementById("confirm_password").value;
+
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
